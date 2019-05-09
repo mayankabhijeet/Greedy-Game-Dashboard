@@ -2,6 +2,7 @@ import React from "react";
 import Graph from "./components/graph";
 import Table from "./components/table";
 import CalanderSelector from "./components/calanderSelector";
+import OfflinePage from "./components/offline";
 import "./App.css";
 
 let chartData = [];
@@ -191,31 +192,57 @@ class App extends React.Component {
       });
   }
 
+  componentDidMount() {
+    window.addEventListener("online", () => {
+      this.setState({
+        isOnline: true
+      });
+    });
+    window.addEventListener("offline", () => {
+      this.setState({
+        isOnline: false
+      });
+    });
+  }
+
   render() {
-    const { apiData, filteredChartData, sortedData, to, from } = this.state;
+    const {
+      apiData,
+      filteredChartData,
+      sortedData,
+      to,
+      from,
+      isOnline
+    } = this.state;
     return (
-      <div className="container my-5">
-        <div className="col-12 mb-5">
-          <CalanderSelector
-            from={from}
-            to={to}
-            apiData={apiData}
-            getFromTimestamp={this.getFromTimestamp}
-            getToTimestamp={this.getToTimestamp}
-          />
-        </div>
-        <div className="col-12 mb-5 bg-dark">
-          <Graph filteredChartData={filteredChartData} />
-        </div>
-        <div className="col-12 mb-5 overflow-auto px-0">
-          <Table
-            sortedData={sortedData}
-            handleSortClick={this.handleSortClick}
-            handlePrevious={this.handlePrevious}
-            handleNext={this.handleNext}
-          />
-        </div>
-      </div>
+      <Fragment>
+        {isOnline ? (
+          <div className="container my-5">
+            <div className="col-12 mb-5">
+              <CalanderSelector
+                from={from}
+                to={to}
+                apiData={apiData}
+                getFromTimestamp={this.getFromTimestamp}
+                getToTimestamp={this.getToTimestamp}
+              />
+            </div>
+            <div className="col-12 mb-5 bg-dark">
+              <Graph filteredChartData={filteredChartData} />
+            </div>
+            <div className="col-12 mb-5 overflow-auto px-0">
+              <Table
+                sortedData={sortedData}
+                handleSortClick={this.handleSortClick}
+                handlePrevious={this.handlePrevious}
+                handleNext={this.handleNext}
+              />
+            </div>
+          </div>
+        ) : (
+          <OfflinePage />
+        )}
+      </Fragment>
     );
   }
 }
