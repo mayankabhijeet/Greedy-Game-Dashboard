@@ -30,7 +30,8 @@ class App extends React.Component {
       ascendingImpressions: false,
       sliceFrom: 5,
       sliceTo: 10,
-      slicedData: []
+      slicedData: [],
+      isOnline: true
     };
   }
 
