@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment }  from "react";
 import Graph from "./components/graph";
 import Table from "./components/table";
 import CalanderSelector from "./components/calanderSelector";
