@@ -1,0 +1,44 @@
+.container{
+  background-color: rgba(0,0,0,0.67);
+  border-radius: 4px;
+  color: #fff;
+}
+
+.recharts-wrapper{
+  max-width: 100%;
+  margin: auto;
+}
+
+.recharts-legend-wrapper{
+  max-width: 100%;
+}
+
+.recharts-surface{
+  max-width: 100% !important;
+}
+
+.recharts-default-legend{
+  display: none;
+}
+
+table{
+  min-width: 700px;
+}
+
+th{
+  cursor: pointer;
+}
+
+.manage-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.rotate{
+  transform: rotate(180deg);
+}
+
+text.recharts-text.recharts-cartesian-axis-tick-value{
+  fill: #fff;
+}
