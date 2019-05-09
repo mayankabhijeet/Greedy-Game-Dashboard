@@ -164,7 +164,7 @@ class App extends React.Component {
 
   async componentWillMount() {
     const apiData = [];
-    await fetch("http://www.mocky.io/v2/5cd04a20320000442200fc10")
+    await fetch("https://www.mocky.io/v2/5cd04a20320000442200fc10")
       .then(res => res.json())
       .then(data => {
         data.map(item => {
